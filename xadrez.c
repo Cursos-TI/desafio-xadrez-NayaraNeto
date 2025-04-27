@@ -1,39 +1,78 @@
 #include <stdio.h>
 
+// Função recursiva para a Torre (move-se 5 casas para a direita)
+void mover_torre(int casas) {
+    if (casas > 0) {
+        printf("Direita\n");
+        mover_torre(casas - 1);  // Chamada recursiva
+    }
+}
+
+// Função recursiva para o Bispo (move-se na diagonal "Cima Direita")
+void mover_bispo(int casas) {
+    if (casas > 0) {
+        printf("Cima Direita\n");
+        mover_bispo(casas - 1);  // Chamada recursiva
+    }
+}
+
+// Função recursiva para a Rainha (move-se 8 casas para a esquerda)
+void mover_rainha(int casas) {
+    if (casas > 0) {
+        printf("Esquerda\n");
+        mover_rainha(casas - 1);  // Chamada recursiva
+    }
+}
+
+// Função para o movimento do Cavalo (2 casas para cima e 1 para a direita em "L")
+// Usando loops aninhados com múltiplas variáveis e condições.
+void mover_cavalo() {
+    for (int i = 0; i < 2; i++) {  // Primeiro loop para as duas casas para cima
+        printf("Cima\n");  // Mover para cima
+
+        // Loop aninhado para o movimento horizontal (1 casa para a direita)
+        for (int j = 0; j < 1; j++) {
+            printf("Direita\n");  // Mover para a direita
+        }
+    }
+}
+
+// Função recursiva para o Bispo com loops aninhados
+// O loop externo controla o movimento vertical, e o loop interno controla o horizontal.
+void mover_bispo_com_loops(int vertical, int horizontal) {
+    if (vertical > 0) {
+        for (int i = 0; i < horizontal; i++) {
+            printf("Cima Direita\n");
+        }
+        mover_bispo_com_loops(vertical - 1, horizontal);  // Chamada recursiva
+    }
+}
+
 int main() {
     // Movimentação da Torre (5 casas para a direita)
     printf("Movimento da Torre:\n");
-
-    // Usamos um laço 'for' para mover a torre 5 casas para a direita.
-    // O laço começa de 0 e repete a instrução até que o índice seja igual a 5.
-    for (int i = 0; i < 5; i++) {
-        // Imprime a direção 'Direita' a cada iteração
-        printf("Direita\n");
-    }
+    mover_torre(5);  // Chama a função recursiva para mover a torre 5 casas
+    printf("\n");
 
     // Movimentação do Bispo (5 casas na diagonal para cima e à direita)
-    printf("\nMovimento do Bispo:\n");
-
-    // Usamos um laço 'while' para simular o movimento do bispo.
-    // A variável i controla o número de casas movidas, começando de 0 até 4 (5 casas no total).
-    int i = 0;
-    while (i < 5) {
-        // Imprime a direção 'Cima Direita' a cada iteração do laço.
-        printf("Cima Direita\n");
-        i++;  // Incrementa a variável 'i' a cada movimento
-    }
+    printf("Movimento do Bispo:\n");
+    mover_bispo(5);  // Chama a função recursiva para mover o bispo
+    printf("\n");
 
     // Movimentação da Rainha (8 casas para a esquerda)
-    printf("\nMovimento da Rainha:\n");
+    printf("Movimento da Rainha:\n");
+    mover_rainha(8);  // Chama a função recursiva para mover a rainha
+    printf("\n");
 
-    // Usamos um laço 'do-while' para simular o movimento da rainha.
-    // O 'do-while' garante que a instrução seja executada pelo menos uma vez, independentemente da condição.
-    int j = 0;
-    do {
-        // Imprime a direção 'Esquerda' a cada iteração do laço.
-        printf("Esquerda\n");
-        j++;  // Incrementa a variável 'j' a cada movimento
-    } while (j < 8);  // O laço continua até que 'j' seja igual a 8 (8 casas para a esquerda)
+    // Movimentação do Cavalo (2 casas para cima e 1 para a direita)
+    printf("Movimento do Cavalo:\n");
+    mover_cavalo();  // Chama a função com loops aninhados para mover o cavalo
+    printf("\n");
+
+    // Movimentação do Bispo com Loops Aninhados
+    printf("Movimento do Bispo com Loops Aninhados:\n");
+    mover_bispo_com_loops(3, 2);  // Exemplo de 3 movimentos verticais e 2 horizontais para o bispo
+    printf("\n");
 
     return 0;  // Retorna 0 para indicar que o programa terminou com sucesso
 }
